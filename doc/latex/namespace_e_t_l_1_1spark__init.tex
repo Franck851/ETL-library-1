@@ -1,0 +1,32 @@
+\hypertarget{namespace_e_t_l_1_1spark__init}{}\doxysection{E\+T\+L.\+spark\+\_\+init Namespace Reference}
+\label{namespace_e_t_l_1_1spark__init}\index{ETL.spark\_init@{ETL.spark\_init}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1spark__init_a7f2639d90f1355a37aca77e7a0d383f4}{get\+\_\+spark\+\_\+dbutils}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1spark__init_a7f2639d90f1355a37aca77e7a0d383f4}\label{namespace_e_t_l_1_1spark__init_a7f2639d90f1355a37aca77e7a0d383f4}} 
+\index{ETL.spark\_init@{ETL.spark\_init}!get\_spark\_dbutils@{get\_spark\_dbutils}}
+\index{get\_spark\_dbutils@{get\_spark\_dbutils}!ETL.spark\_init@{ETL.spark\_init}}
+\doxysubsubsection{\texorpdfstring{get\_spark\_dbutils()}{get\_spark\_dbutils()}}
+{\footnotesize\ttfamily def E\+T\+L.\+spark\+\_\+init.\+get\+\_\+spark\+\_\+dbutils (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get dbutils and spark objects.
+
+Do not put this at module scope to prevent spark initialisation on import.
+
+Spark / dbutils are not the same on notebooks vs on databricks-connect,
+and instanciating them via databricks-connect takes some time.
+
+The point of this helper function is thus to allow control over when
+to launch this initialisation. This is needed in order to use some of the library's
+functions without having to wait for that spark init unless needed.
+
+Returns
+-------
+(pyspark.sql.session.SparkSession, pyspark.dbutils.DBUtils)
+\end{DoxyVerb}
+ 

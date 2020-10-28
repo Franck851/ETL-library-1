@@ -1,0 +1,139 @@
+\hypertarget{namespace_e_t_l_1_1string__format}{}\doxysection{E\+T\+L.\+string\+\_\+format Namespace Reference}
+\label{namespace_e_t_l_1_1string__format}\index{ETL.string\_format@{ETL.string\_format}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1string__format_aa603df7a67490138d6e40c299b4ba7d7}{format\+\_\+week\+\_\+days}} (col\+\_\+name, lang)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1string__format_a307c59fbff5861dc62c383edc2d0d8f2}{format\+\_\+zip}} (col\+\_\+name)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1string__format_a31896a5fda5fa4051fe616992510fe64}{format\+\_\+yes\+\_\+no}} (col\+\_\+name)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1string__format_a4a56c7258d39797519b47fec8d0cfa3a}{format\+\_\+hour}} (col\+\_\+name)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1string__format_a0e0ee33d0a378cba28e7bac80eafd25e}{format\+\_\+phone}} (col\+\_\+name)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1string__format_a6973a98d2debe00732f4c84ec339e493}{format\+\_\+transit\+\_\+id}} (col\+\_\+name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Common string formatting operations for W3C semantic standards.\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1string__format_a4a56c7258d39797519b47fec8d0cfa3a}\label{namespace_e_t_l_1_1string__format_a4a56c7258d39797519b47fec8d0cfa3a}} 
+\index{ETL.string\_format@{ETL.string\_format}!format\_hour@{format\_hour}}
+\index{format\_hour@{format\_hour}!ETL.string\_format@{ETL.string\_format}}
+\doxysubsubsection{\texorpdfstring{format\_hour()}{format\_hour()}}
+{\footnotesize\ttfamily def E\+T\+L.\+string\+\_\+format.\+format\+\_\+hour (\begin{DoxyParamCaption}\item[{}]{col\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}If hour is formatted like "9h00" get the W3C standard: "9:00:00"
+
+Examples
+________
+df.withColumn('OPEN_HOUR', format_hour('OPEN_HOUR'))
+
+Parameters
+----------
+col_name
+
+Returns
+-------
+pyspark.sql.column
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1string__format_a0e0ee33d0a378cba28e7bac80eafd25e}\label{namespace_e_t_l_1_1string__format_a0e0ee33d0a378cba28e7bac80eafd25e}} 
+\index{ETL.string\_format@{ETL.string\_format}!format\_phone@{format\_phone}}
+\index{format\_phone@{format\_phone}!ETL.string\_format@{ETL.string\_format}}
+\doxysubsubsection{\texorpdfstring{format\_phone()}{format\_phone()}}
+{\footnotesize\ttfamily def E\+T\+L.\+string\+\_\+format.\+format\+\_\+phone (\begin{DoxyParamCaption}\item[{}]{col\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Formats a 10 digits number or takes the first 10 digits of a number.
+
+Parameters
+----------
+col_name: str
+
+Returns
+-------
+pyspark.sql.column
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1string__format_a6973a98d2debe00732f4c84ec339e493}\label{namespace_e_t_l_1_1string__format_a6973a98d2debe00732f4c84ec339e493}} 
+\index{ETL.string\_format@{ETL.string\_format}!format\_transit\_id@{format\_transit\_id}}
+\index{format\_transit\_id@{format\_transit\_id}!ETL.string\_format@{ETL.string\_format}}
+\doxysubsubsection{\texorpdfstring{format\_transit\_id()}{format\_transit\_id()}}
+{\footnotesize\ttfamily def E\+T\+L.\+string\+\_\+format.\+format\+\_\+transit\+\_\+id (\begin{DoxyParamCaption}\item[{}]{col\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a dash before the last character or digit.
+
+Parameters
+----------
+col_name: str
+
+Returns
+-------
+pyspark.sql.column
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1string__format_aa603df7a67490138d6e40c299b4ba7d7}\label{namespace_e_t_l_1_1string__format_aa603df7a67490138d6e40c299b4ba7d7}} 
+\index{ETL.string\_format@{ETL.string\_format}!format\_week\_days@{format\_week\_days}}
+\index{format\_week\_days@{format\_week\_days}!ETL.string\_format@{ETL.string\_format}}
+\doxysubsubsection{\texorpdfstring{format\_week\_days()}{format\_week\_days()}}
+{\footnotesize\ttfamily def E\+T\+L.\+string\+\_\+format.\+format\+\_\+week\+\_\+days (\begin{DoxyParamCaption}\item[{}]{col\+\_\+name,  }\item[{}]{lang }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}From integer get weekday name in the specified language.
+
+Examples
+________
+df.withColumn('DAY_OF_WEEK_NAME_FR', format_week_days('DAY_OF_WEEK_NUMBER', 'fr'))
+
+Parameters
+----------
+col_name: str
+lang: str
+  fr, en or es
+
+Returns
+-------
+pyspark.sql.column
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1string__format_a31896a5fda5fa4051fe616992510fe64}\label{namespace_e_t_l_1_1string__format_a31896a5fda5fa4051fe616992510fe64}} 
+\index{ETL.string\_format@{ETL.string\_format}!format\_yes\_no@{format\_yes\_no}}
+\index{format\_yes\_no@{format\_yes\_no}!ETL.string\_format@{ETL.string\_format}}
+\doxysubsubsection{\texorpdfstring{format\_yes\_no()}{format\_yes\_no()}}
+{\footnotesize\ttfamily def E\+T\+L.\+string\+\_\+format.\+format\+\_\+yes\+\_\+no (\begin{DoxyParamCaption}\item[{}]{col\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}From, 0 ,'0', 'yes', 'oui', 'non', etc.. Get the true/false boolean equivalent.
+
+Examples
+________
+df.withColumn('WITHDRAW_ONLY', format_yes_no('WITHDRAW_ONLY'))
+
+Parameters
+----------
+col_name: str
+
+Returns
+-------
+pyspark.sql.column
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1string__format_a307c59fbff5861dc62c383edc2d0d8f2}\label{namespace_e_t_l_1_1string__format_a307c59fbff5861dc62c383edc2d0d8f2}} 
+\index{ETL.string\_format@{ETL.string\_format}!format\_zip@{format\_zip}}
+\index{format\_zip@{format\_zip}!ETL.string\_format@{ETL.string\_format}}
+\doxysubsubsection{\texorpdfstring{format\_zip()}{format\_zip()}}
+{\footnotesize\ttfamily def E\+T\+L.\+string\+\_\+format.\+format\+\_\+zip (\begin{DoxyParamCaption}\item[{}]{col\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add the missing space in a 6 character-long zip code.
+
+Examples
+________
+df.withColumn('POSTAL_CODE', format_zip('POSTAL_CODE'))
+
+Parameters
+----------
+col_name: str
+
+Returns
+-------
+pyspark.sql.column
+\end{DoxyVerb}
+ 

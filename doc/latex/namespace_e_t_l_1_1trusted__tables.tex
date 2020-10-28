@@ -1,0 +1,80 @@
+\hypertarget{namespace_e_t_l_1_1trusted__tables}{}\doxysection{E\+T\+L.\+trusted\+\_\+tables Namespace Reference}
+\label{namespace_e_t_l_1_1trusted__tables}\index{ETL.trusted\_tables@{ETL.trusted\_tables}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1trusted__tables_a1b375def0b26a8bff402b8b5b6bb2667}{read}} (config, table, $\ast$$\ast$dataframe\+\_\+reader\+\_\+options)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1trusted__tables_ab3bcde4d05ad6b38edf9c5ab230ed8ff}{write}} (config, table, num\+\_\+files=10, df=None, transformation=None, bool incremental=None, $\ast$$\ast$dataframe\+\_\+writer\+\_\+options)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This module provides utility functions to select/read/write JSON data from the trusted zone.
+
+The names and structure of tables, folders and paths must conform to the library's standard convention:
+
+  - trusted-zone -| - data_source - ...
+              |
+              |
+              | - data_source - ...
+              |
+              |
+              | - yammer -  | - table_name
+                            | - table_name
+                            | - Messages
+                            | - Users
+                            | - Likes
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1trusted__tables_a1b375def0b26a8bff402b8b5b6bb2667}\label{namespace_e_t_l_1_1trusted__tables_a1b375def0b26a8bff402b8b5b6bb2667}} 
+\index{ETL.trusted\_tables@{ETL.trusted\_tables}!read@{read}}
+\index{read@{read}!ETL.trusted\_tables@{ETL.trusted\_tables}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily def E\+T\+L.\+trusted\+\_\+tables.\+read (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table,  }\item[{$\ast$$\ast$}]{dataframe\+\_\+reader\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read trusted zone's json files.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+
+table: str
+
+dataframe_reader_options
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1trusted__tables_ab3bcde4d05ad6b38edf9c5ab230ed8ff}\label{namespace_e_t_l_1_1trusted__tables_ab3bcde4d05ad6b38edf9c5ab230ed8ff}} 
+\index{ETL.trusted\_tables@{ETL.trusted\_tables}!write@{write}}
+\index{write@{write}!ETL.trusted\_tables@{ETL.trusted\_tables}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily def E\+T\+L.\+trusted\+\_\+tables.\+write (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table,  }\item[{}]{num\+\_\+files = {\ttfamily 10},  }\item[{}]{df = {\ttfamily None},  }\item[{}]{transformation = {\ttfamily None},  }\item[{bool }]{incremental = {\ttfamily None},  }\item[{$\ast$$\ast$}]{dataframe\+\_\+writer\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Writes the spark dataframe in json format to the trusted zone.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+
+table: str
+
+num_files: int
+  How many files to write
+
+df: pyspark.sql.DataFrame
+  Dataframe to write. Leave None to read table from curated.
+
+transformation: ETL.transform.Transform or (pyspark.sql.DataFrame) -> pyspark.sql.DataFrame, optional
+  A function taking a df and returning a df.
+
+incremental: bool, optional
+  To perform incremental load based on the curated-zone's control table content.
+  Only possible when not passing your own DF.
+  Have precedence over config's params
+
+dataframe_writer_options
+\end{DoxyVerb}
+ 

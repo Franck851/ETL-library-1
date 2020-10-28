@@ -1,0 +1,176 @@
+Documentation\+: \href{https://charlesdarkwind.github.io/ETL-lib.github.io/html/}{\texttt{ https\+://charlesdarkwind.\+github.\+io/\+E\+T\+L-\/lib.\+github.\+io/html/}}
+
+For development or analysis purposes, the library saves time by never mounting volumes unless necessary or if asked to mount anyway, even after clearing a notebook\textquotesingle{}s state.  The volumes accessibility is always assessed at the last possible moment to reduce the chances of using outdated credentials.
+
+Tables data location is abstracted away.
+
+\DoxyHorRuler{0}
+ 
+
+~
+
+\label{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md0}%
+\Hypertarget{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md0}%
+\doxysubparagraph*{Standard / low abstraction modules}
+
+
+\begin{DoxyItemize}
+\item raw
+\item curated
+\item trusted
+\item raw\+\_\+control
+\item curated\+\_\+control
+\end{DoxyItemize}
+
+These modules contain utility functions for read, write and delete operations while enforcing conventional naming, file and folder locations and other standards to keep things organised.
+
+These also log a lot of debug informations in a log file located at\+:
+\begin{DoxyItemize}
+\item windows\+: C\+://logs
+\item data lake\+: raw-\/zone/logs
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+ 
+
+~
+
+\label{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md1}%
+\Hypertarget{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md1}%
+\doxysubparagraph*{Utility modules}
+
+
+\begin{DoxyItemize}
+\item utils
+\item config
+\item dbfs\+\_\+utils
+\item json\+\_\+utils
+\item delta\+\_\+utils
+\end{DoxyItemize}
+
+For more flexibility in order to build pipelines that can cover many other use cases. The higher-\/order / standard modules seen before all implement functions from these utility modules.
+
+{\bfseries{utils}} is the only module that can be imported, and its functions used, from anywhere without needing spark or a databricks connection.
+
+\DoxyHorRuler{0}
+ 
+
+~\hypertarget{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md2}{}\doxyparagraph{Installation}\label{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip install ETL-\/lib}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dbutils.library.installPyPI('ETL-\/lib')}
+\end{DoxyCode}
+\hypertarget{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md3}{}\doxyparagraph{Examples}\label{md__c_1__users__p_a_r_j010__documents__e_t_l_namespace_readme_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{from pyspark.sql.functions import to\_timestamp, col}
+\DoxyCodeLine{from pyspark.sql.types import TimestampType}
+\DoxyCodeLine{}
+\DoxyCodeLine{from yammer\_params import params}
+\DoxyCodeLine{from ETL import *}
+\DoxyCodeLine{}
+\DoxyCodeLine{config = Config(params)}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{def parse\_date(df):}
+\DoxyCodeLine{  return df.withColumn(}
+\DoxyCodeLine{    'created\_at', to\_timestamp(col('created\_at').cast(TimestampType()), "yyyy-\/mm-\/dd'T'HH:mm:ss"))}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Read all raw-\/zone data for table "Messages" and overwrite the curated-\/zone delta table:}
+\DoxyCodeLine{curated.write(config, 'Messages', transformation=parse\_date)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Read only new raw-\/zone folders and merge it into the curated-\/zone:}
+\DoxyCodeLine{curated.merge(config, 'Messages', transformation=parse\_date, incremental=True)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Since raw can only go to curated, ETL.curated\_tables.merge() and ETL.curated.write() do it implicitly}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Example of the same merge but more explicitly using other functions from the library}
+\DoxyCodeLine{def raw\_to\_curated(table, transformation=None, incremental=True):}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \# Read raw data, also retrieve potential control table updates}
+\DoxyCodeLine{  df, short\_paths = raw.read(config, table, incremental=incremental)}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \# Clean it}
+\DoxyCodeLine{  if transformation and not utils.df\_empty(df):}
+\DoxyCodeLine{    df = transformation(df)}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \# Merge into curated table}
+\DoxyCodeLine{  curated.merge(config, table, df, incremental=incremental)}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \# Update control table}
+\DoxyCodeLine{  raw\_control.insert(config, short\_paths)}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{"""}
+\DoxyCodeLine{>>> help(ETL.curated.write)}
+\DoxyCodeLine{}
+\DoxyCodeLine{write(config, table, df=None, transformation=None, incremental=False, **dataframe\_writer\_options)}
+\DoxyCodeLine{    Write/save data in the delta table(s).}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    Parameters}
+\DoxyCodeLine{    -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{    config: Config}
+\DoxyCodeLine{      Config instance}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    table: str}
+\DoxyCodeLine{      Name of the table / folder.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    df: pyspark.sql.DataFrame, optional}
+\DoxyCodeLine{      Dataframe containing the data to save in the curated delta table.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    transformation: (pyspark.sql.DataFrame) -\/> pyspark.sql.DataFrame, optional}
+\DoxyCodeLine{      A function taking a df and returning a df.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    incremental: bool, optional}
+\DoxyCodeLine{      To perform incremental load based on the raw-\/zone's control table content.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    dataframe\_writer\_options:}
+\DoxyCodeLine{        mode: str}
+\DoxyCodeLine{            'overwrite' or 'append'}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{>>> help(ETL.curated.merge)}
+\DoxyCodeLine{}
+\DoxyCodeLine{merge(config, table, df=None, transformation=None, unique\_key=None, incremental=False)}
+\DoxyCodeLine{    Update data in the delta table.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    If df is not provided, read table data from raw.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    Performs a 'merge into'/'upsert' of a dataframe/table-\/view inside the Delta Table.}
+\DoxyCodeLine{    Meaning rows are overwritten if it finds one with the same designated unqique fields, or else it is inserted.}
+\DoxyCodeLine{    The batch of updates must not contain more than one row with the same chosen unique key.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    Handles the creation of the SQL condition update part. Needs an unique key, can be a combination of 2 or more fields.}
+\DoxyCodeLine{    Eg. "ON delta\_messages.message\_id = updates.message\_id AND delta\_messages.id = updates.id"}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    Parameters}
+\DoxyCodeLine{    -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{    config: Config}
+\DoxyCodeLine{      Config instance}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    table: str}
+\DoxyCodeLine{      Name of the table / folder.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    df: pyspark.sql.DataFrame, optional}
+\DoxyCodeLine{      Dataframe containing the data to save in the curated delta table.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    transformation: (pyspark.sql.DataFrame) -\/> pyspark.sql.DataFrame, optional}
+\DoxyCodeLine{      A function taking a df and returning a df.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    unique\_key: list or str, optional}
+\DoxyCodeLine{      Columns with unique values or list of columns to use as a combined unique key.}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    incremental: bool, optional}
+\DoxyCodeLine{      To perform incremental load based on the raw-\/zone's control table content.}
+\DoxyCodeLine{"""}
+\end{DoxyCode}
+ 

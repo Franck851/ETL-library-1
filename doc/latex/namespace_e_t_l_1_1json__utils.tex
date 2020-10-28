@@ -1,0 +1,61 @@
+\hypertarget{namespace_e_t_l_1_1json__utils}{}\doxysection{E\+T\+L.\+json\+\_\+utils Namespace Reference}
+\label{namespace_e_t_l_1_1json__utils}\index{ETL.json\_utils@{ETL.json\_utils}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1json__utils_ae3de367d4d86843b4c7ffc0a6dfbaa28}{write\+\_\+df}} (config, df, zone, path, num\+\_\+files=None, $\ast$$\ast$dataframe\+\_\+writer\+\_\+options)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1json__utils_a25b9e5fd14c3ccc65baa25de31530e57}{read}} (config, zone, paths, $\ast$$\ast$dataframe\+\_\+reader\+\_\+options)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1json__utils_a25b9e5fd14c3ccc65baa25de31530e57}\label{namespace_e_t_l_1_1json__utils_a25b9e5fd14c3ccc65baa25de31530e57}} 
+\index{ETL.json\_utils@{ETL.json\_utils}!read@{read}}
+\index{read@{read}!ETL.json\_utils@{ETL.json\_utils}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily def E\+T\+L.\+json\+\_\+utils.\+read (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{paths,  }\item[{$\ast$$\ast$}]{dataframe\+\_\+reader\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read all json files of the folder, equivalent of doing a "SELECT *"
+
+Returns None if no data at path or path does not exists.
+Can still return a empty dataframe or a dataframe of empty rows if such is obtained from reading the files.
+
+Parameters
+----------
+config: Config
+zone: str
+paths: list or str
+dataframe_reader_options
+
+Returns
+-------
+pyspark.sql.DataFrame or None
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1json__utils_ae3de367d4d86843b4c7ffc0a6dfbaa28}\label{namespace_e_t_l_1_1json__utils_ae3de367d4d86843b4c7ffc0a6dfbaa28}} 
+\index{ETL.json\_utils@{ETL.json\_utils}!write\_df@{write\_df}}
+\index{write\_df@{write\_df}!ETL.json\_utils@{ETL.json\_utils}}
+\doxysubsubsection{\texorpdfstring{write\_df()}{write\_df()}}
+{\footnotesize\ttfamily def E\+T\+L.\+json\+\_\+utils.\+write\+\_\+df (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{df,  }\item[{}]{zone,  }\item[{}]{path,  }\item[{}]{num\+\_\+files = {\ttfamily None},  }\item[{$\ast$$\ast$}]{dataframe\+\_\+writer\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Writes the spark dataframe in json format to the specified zone.
+
+Parameters
+----------
+config: Config
+  Config instance
+
+df: pyspark.sql.DataFrame
+  Dataframe to write.
+
+zone: str
+  ADLS zone to use in path.
+
+path: str
+
+num_files: int, optional
+  How many files to write.
+
+dataframe_writer_options
+\end{DoxyVerb}
+ 

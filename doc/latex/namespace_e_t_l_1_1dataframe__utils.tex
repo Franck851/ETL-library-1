@@ -1,0 +1,115 @@
+\hypertarget{namespace_e_t_l_1_1dataframe__utils}{}\doxysection{E\+T\+L.\+dataframe\+\_\+utils Namespace Reference}
+\label{namespace_e_t_l_1_1dataframe__utils}\index{ETL.dataframe\_utils@{ETL.dataframe\_utils}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dataframe__utils_af273ce0aafcc61b9d0c119da2f2f9917}{write}} (config, df, zone, path, num\+\_\+files=None, check\+\_\+df=True, $\ast$$\ast$dataframe\+\_\+writer\+\_\+options)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dataframe__utils_a538b6d98440ff39b1bade35dbd016db7}{read}} (config, zone, path, $\ast$$\ast$dataframe\+\_\+reader\+\_\+options)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dataframe__utils_a55775e854a18fcd1bd5c10511feb584b}{groupby\+\_\+and\+\_\+to\+\_\+list}} (df, groupby\+\_\+col\+\_\+name, new\+\_\+col\+\_\+name=\textquotesingle{}x\textquotesingle{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1dataframe__utils_a55775e854a18fcd1bd5c10511feb584b}\label{namespace_e_t_l_1_1dataframe__utils_a55775e854a18fcd1bd5c10511feb584b}} 
+\index{ETL.dataframe\_utils@{ETL.dataframe\_utils}!groupby\_and\_to\_list@{groupby\_and\_to\_list}}
+\index{groupby\_and\_to\_list@{groupby\_and\_to\_list}!ETL.dataframe\_utils@{ETL.dataframe\_utils}}
+\doxysubsubsection{\texorpdfstring{groupby\_and\_to\_list()}{groupby\_and\_to\_list()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dataframe\+\_\+utils.\+groupby\+\_\+and\+\_\+to\+\_\+list (\begin{DoxyParamCaption}\item[{}]{df,  }\item[{}]{groupby\+\_\+col\+\_\+name,  }\item[{}]{new\+\_\+col\+\_\+name = {\ttfamily \textquotesingle{}x\textquotesingle{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Groupby column name and collect other columns as a list of structs.
+
+Examples
+________
+
+>> atm_hours.show(truncate=False)
++------+-----------+---------+----------+
+|ATM_ID|DAY_OF_WEEK|OPEN_HOUR|CLOSE_HOUR|
++------+-----------+---------+----------+
+|1007  |1          |8:00:00  |23:00:00  |
+|1007  |2          |8:00:00  |23:00:00  |
+|1007  |3          |8:00:00  |23:00:00  |
++------+-----------+---------+----------+
+
+>> atm_hours.printSchema()
+root
+ |-- ATM_ID: string
+ |-- DAY_OF_WEEK: string
+ |-- OPEN_HOUR: string
+ |-- CLOSE_HOUR: string
+ |-- DAY_OF_WEEK: string
+
+>> atm_hours = groupby_and_to_list(atm_hours, 'ATM_ID', 'HOURS')
+
+>> atm_hours.show(truncate=False)
++------+------------------------------------------------------------------------+
+|ATM_ID|HOURS                                                                   |
++------+------------------------------------------------------------------------+
+|1007  |[[1, 8:00:00, 23:00:00], [2, 8:00:00, 23:00:00], [3, 8:00:00, 23:00:00]]|
++------+------------------------------------------------------------------------+
+
+>> atm_hours.printSchema()
+root
+ |-- ATM_ID: string
+ |-- HOURS: array
+ |    |-- element: struct
+ |    |    |-- DAY_OF_WEEK: string
+ |    |    |-- OPEN_HOUR: string
+ |    |    |-- CLOSE_HOUR: string
+
+Parameters
+----------
+df: pyspark.sql.DataFrame
+groupby_col_name: str
+new_col_name: str
+
+Returns
+-------
+pyspark.sql.DataFrame
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1dataframe__utils_a538b6d98440ff39b1bade35dbd016db7}\label{namespace_e_t_l_1_1dataframe__utils_a538b6d98440ff39b1bade35dbd016db7}} 
+\index{ETL.dataframe\_utils@{ETL.dataframe\_utils}!read@{read}}
+\index{read@{read}!ETL.dataframe\_utils@{ETL.dataframe\_utils}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dataframe\+\_\+utils.\+read (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{path,  }\item[{$\ast$$\ast$}]{dataframe\+\_\+reader\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read all files of the folder, equivalent of doing a SELECT *
+
+CSV, JSON, parquet or delta.
+
+Parameters
+----------
+config: ETL.Config
+zone: str
+path: list or str
+dataframe_reader_options:
+  format: str
+
+Returns
+-------
+pyspark.sql.DataFrame
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1dataframe__utils_af273ce0aafcc61b9d0c119da2f2f9917}\label{namespace_e_t_l_1_1dataframe__utils_af273ce0aafcc61b9d0c119da2f2f9917}} 
+\index{ETL.dataframe\_utils@{ETL.dataframe\_utils}!write@{write}}
+\index{write@{write}!ETL.dataframe\_utils@{ETL.dataframe\_utils}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dataframe\+\_\+utils.\+write (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{df,  }\item[{}]{zone,  }\item[{}]{path,  }\item[{}]{num\+\_\+files = {\ttfamily None},  }\item[{}]{check\+\_\+df = {\ttfamily True},  }\item[{$\ast$$\ast$}]{dataframe\+\_\+writer\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Writes the spark dataframe in json, csv, parquet or delta format to the specified zone.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+df: pyspark.sql.DataFrame
+zone: str
+  ADLS zone to use in path.
+path: str
+num_files: int, optional
+  How many files to write.
+check_df: bool
+  Dont check if df is empty before write, large execution plans can make the dataframewriter crash
+dataframe_writer_options
+\end{DoxyVerb}
+ 

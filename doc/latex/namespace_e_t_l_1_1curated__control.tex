@@ -1,0 +1,129 @@
+\hypertarget{namespace_e_t_l_1_1curated__control}{}\doxysection{E\+T\+L.\+curated\+\_\+control Namespace Reference}
+\label{namespace_e_t_l_1_1curated__control}\index{ETL.curated\_control@{ETL.curated\_control}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1curated__control_aae348611b6f974ab831df16213adc41c}{select}} (config, table)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1curated__control_a9fbf9593ca7b270d14acbca0828c258c}{update}} (config, table)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1curated__control_a3fb447b83f0d22e392ddb25352dd0b5f}{get\+\_\+delta\+\_\+table\+\_\+version}} (config, table)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1curated__control_a418426161bc24299963e1f4e11f9e9b1}{delete}} (config, table)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1curated__control_a80e6e9b37203e4af1fa05f1751af901b}{create\+\_\+if\+\_\+not\+\_\+exists}} (config)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions to use the control table in wich is saved information about ingested curated-zone folders.
+
+For an incremental loads or finding row-level updates between two points in time of a given table.
+
+Table schema:
+  (table_name STRING, last_version INT)
+
+Example rows:
+  MessagesLikes 1
+  MessagesLikes 2
+  Messages 1
+  Messages 2
+  Messages 3
+  Groups  1
+
+Typical incremental flow:
+  1. read data from curated (current table state)
+  2. look the control table for "table_name" and get the row with highest value of "version"
+  3. read curated data from that point in time using the version from the control table
+  4. substract (SQL except) that second df from the first one
+  5. ingest/process the curated data
+  6. if data was successfully processed, get the new "VERSION" from the table's metadata
+  7. insert a row in the control table with (table_name, version)\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1curated__control_a80e6e9b37203e4af1fa05f1751af901b}\label{namespace_e_t_l_1_1curated__control_a80e6e9b37203e4af1fa05f1751af901b}} 
+\index{ETL.curated\_control@{ETL.curated\_control}!create\_if\_not\_exists@{create\_if\_not\_exists}}
+\index{create\_if\_not\_exists@{create\_if\_not\_exists}!ETL.curated\_control@{ETL.curated\_control}}
+\doxysubsubsection{\texorpdfstring{create\_if\_not\_exists()}{create\_if\_not\_exists()}}
+{\footnotesize\ttfamily def E\+T\+L.\+curated\+\_\+control.\+create\+\_\+if\+\_\+not\+\_\+exists (\begin{DoxyParamCaption}\item[{}]{config }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create control table if not exists.
+
+Save delta tables versions.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1curated__control_a418426161bc24299963e1f4e11f9e9b1}\label{namespace_e_t_l_1_1curated__control_a418426161bc24299963e1f4e11f9e9b1}} 
+\index{ETL.curated\_control@{ETL.curated\_control}!delete@{delete}}
+\index{delete@{delete}!ETL.curated\_control@{ETL.curated\_control}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily def E\+T\+L.\+curated\+\_\+control.\+delete (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parameters
+----------
+config: ETL.Config
+  Config instance
+
+table: str
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1curated__control_a3fb447b83f0d22e392ddb25352dd0b5f}\label{namespace_e_t_l_1_1curated__control_a3fb447b83f0d22e392ddb25352dd0b5f}} 
+\index{ETL.curated\_control@{ETL.curated\_control}!get\_delta\_table\_version@{get\_delta\_table\_version}}
+\index{get\_delta\_table\_version@{get\_delta\_table\_version}!ETL.curated\_control@{ETL.curated\_control}}
+\doxysubsubsection{\texorpdfstring{get\_delta\_table\_version()}{get\_delta\_table\_version()}}
+{\footnotesize\ttfamily def E\+T\+L.\+curated\+\_\+control.\+get\+\_\+delta\+\_\+table\+\_\+version (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the delta table version number from its name.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+
+table: str
+
+Returns
+-------
+int
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1curated__control_aae348611b6f974ab831df16213adc41c}\label{namespace_e_t_l_1_1curated__control_aae348611b6f974ab831df16213adc41c}} 
+\index{ETL.curated\_control@{ETL.curated\_control}!select@{select}}
+\index{select@{select}!ETL.curated\_control@{ETL.curated\_control}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily def E\+T\+L.\+curated\+\_\+control.\+select (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get last known delta table version saved inside the trusted control table.
+
+Get the version number metadata of the delta table that was last saved
+in the trusted control table so a diff of all updates since then can be retrieved.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+
+table: str
+
+Returns
+-------
+str or None
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1curated__control_a9fbf9593ca7b270d14acbca0828c258c}\label{namespace_e_t_l_1_1curated__control_a9fbf9593ca7b270d14acbca0828c258c}} 
+\index{ETL.curated\_control@{ETL.curated\_control}!update@{update}}
+\index{update@{update}!ETL.curated\_control@{ETL.curated\_control}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily def E\+T\+L.\+curated\+\_\+control.\+update (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update the control table by inserting the delta table version id.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+
+table: str
+\end{DoxyVerb}
+ 

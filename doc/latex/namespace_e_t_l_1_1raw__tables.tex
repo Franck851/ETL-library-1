@@ -1,0 +1,137 @@
+\hypertarget{namespace_e_t_l_1_1raw__tables}{}\doxysection{E\+T\+L.\+raw\+\_\+tables Namespace Reference}
+\label{namespace_e_t_l_1_1raw__tables}\index{ETL.raw\_tables@{ETL.raw\_tables}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__tables_ad790d0785e6678d7f46836c4d2c03f5c}{read}} (config, table, incremental=False, $\ast$$\ast$dataframe\+\_\+reader\+\_\+options)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__tables_a1959c543f441ab24166e6062212712fc}{get\+\_\+table\+\_\+file\+\_\+paths}} (config, table, incremental=False)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__tables_a64e1d8ece7ad4c5ee2cd7238702a745d}{get\+\_\+table\+\_\+folder\+\_\+paths}} (config, table, incremental=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This module provides utility functions to select/read JSON data from the ingestion raw zone.
+
+The names and structure of tables, folders and paths must conform to the library's standard convention:
+
+- raw-zone -| - data_source - ...
+            |
+            |
+            | - data_source - ...
+            |
+            |
+            | - yammer -  |
+                          |
+                          | - ingestion_date -| - table_name
+                          |                   | - table_name
+                          |
+                          | - ingestion_date -| - table_name
+                          |                   | - table_name
+                          |
+                          | - ingestion_date -| - table_name
+                          |
+                          |
+                          | - inc-2019-12-31 -| - Users
+                          |                   | - Messages
+                          |
+                          | - inc-2020-01-01 -| - Messages
+                                              | - Groups
+
+
+Data cannot be deleted/updated.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1raw__tables_a1959c543f441ab24166e6062212712fc}\label{namespace_e_t_l_1_1raw__tables_a1959c543f441ab24166e6062212712fc}} 
+\index{ETL.raw\_tables@{ETL.raw\_tables}!get\_table\_file\_paths@{get\_table\_file\_paths}}
+\index{get\_table\_file\_paths@{get\_table\_file\_paths}!ETL.raw\_tables@{ETL.raw\_tables}}
+\doxysubsubsection{\texorpdfstring{get\_table\_file\_paths()}{get\_table\_file\_paths()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+tables.\+get\+\_\+table\+\_\+file\+\_\+paths (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table,  }\item[{}]{incremental = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get all absolute paths of files with data for the provided table name across all incremental folders.
+
+Also returns short paths ready to update the raw control table.
+
+Return format:
+
+( [table_file_paths, ...], [control_table_updates, ....] )
+
+(
+  [
+    '/dbfs/raw_mount/data_source/ingestion_date/table_name/some_file.json',
+    '/dbfs/raw_mount/data_source/ingestion_date/table_name/some_file.json',
+    '/dbfs/raw_mount/data_source/ingestion_date/table_name/some_file.json'
+  ],
+  [
+    'inc-2019_09_08/table_name',
+    'inc-2019_12_12/table_name'
+  ]
+)
+
+Parameters
+----------
+config: ETL.Config
+table: str
+incremental: bool
+
+Returns
+-------
+(list of str, list of str)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__tables_a64e1d8ece7ad4c5ee2cd7238702a745d}\label{namespace_e_t_l_1_1raw__tables_a64e1d8ece7ad4c5ee2cd7238702a745d}} 
+\index{ETL.raw\_tables@{ETL.raw\_tables}!get\_table\_folder\_paths@{get\_table\_folder\_paths}}
+\index{get\_table\_folder\_paths@{get\_table\_folder\_paths}!ETL.raw\_tables@{ETL.raw\_tables}}
+\doxysubsubsection{\texorpdfstring{get\_table\_folder\_paths()}{get\_table\_folder\_paths()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+tables.\+get\+\_\+table\+\_\+folder\+\_\+paths (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table,  }\item[{}]{incremental = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get all absolute paths of folders with data for the provided table name across all incremental folders.
+
+Also returns short paths ready to update the raw control table.
+Batching paths discovery by folders may also reduce chances of timeout.
+
+Return format:
+
+( [table_folder_paths, ...], [control_table_updates, ....] )
+
+(
+  [
+    '/dbfs/raw_mount/data_source/inc-2019_09_08/table_name',
+    '/dbfs/raw_mount/data_source/inc-2019_12_12/table_name
+  ],
+  [
+    'inc-2019_09_08/table_name',
+    'inc-2019_12_12/table_name'
+  ]
+)
+
+Parameters
+----------
+config: ETL.Config
+table: str
+incremental: bool
+
+Returns
+-------
+(list of str, list of str)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__tables_ad790d0785e6678d7f46836c4d2c03f5c}\label{namespace_e_t_l_1_1raw__tables_ad790d0785e6678d7f46836c4d2c03f5c}} 
+\index{ETL.raw\_tables@{ETL.raw\_tables}!read@{read}}
+\index{read@{read}!ETL.raw\_tables@{ETL.raw\_tables}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+tables.\+read (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table,  }\item[{}]{incremental = {\ttfamily False},  }\item[{$\ast$$\ast$}]{dataframe\+\_\+reader\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parameters
+----------
+config: ETL.Config
+table: str
+incremental: bool
+dataframe_reader_options
+
+Returns
+-------
+(pyspark.sql.DataFrame, list)
+\end{DoxyVerb}
+ 

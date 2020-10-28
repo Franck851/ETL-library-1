@@ -1,0 +1,205 @@
+\hypertarget{namespace_e_t_l_1_1delta__utils}{}\doxysection{E\+T\+L.\+delta\+\_\+utils Namespace Reference}
+\label{namespace_e_t_l_1_1delta__utils}\index{ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a5cf1b5612a590fbe4f02916a63d697b0}{read}} (config, zone, path, $\ast$$\ast$dataframe\+\_\+reader\+\_\+options)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_ac59422ad9868d11300dedcaa864d69ff}{write}} (config, df, zone, path, table, $\ast$$\ast$dataframe\+\_\+writer\+\_\+options)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a1b5382c97de7abcc49f5cf213f91656d}{merge}} (config, zone, table, df, path, unique\+\_\+key)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a253eb0d98f838d9755b7803ad35bcea5}{delete}} (config, zone, table, path, database\+\_\+name=None, drop=False)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_acf9d968e0b6380d808e5bd498cdf9837}{create\+\_\+if\+\_\+not\+\_\+exists}} (config, table, schema, location=None)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_ac45cecd95ec0561f4bc59089cabf8fba}{refresh\+\_\+symlink}} (path)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a8b2e18d3fabce2a188749bc2f0772cfe}{get\+\_\+inserts\+\_\+updates\+\_\+deletes}} (config, zone, table, path, unique\+\_\+key, database\+\_\+name=\textquotesingle{}default\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a413a07e5b8d1ff17f754fee83afdb6ff}{upsert}} = \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a1b5382c97de7abcc49f5cf213f91656d}{merge}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This module provides utility functions to select, insert and delete operations on delta tables.
+
+The names and structure of tables, folders and paths do not have to conform to the library's standard convention.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_acf9d968e0b6380d808e5bd498cdf9837}\label{namespace_e_t_l_1_1delta__utils_acf9d968e0b6380d808e5bd498cdf9837}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!create\_if\_not\_exists@{create\_if\_not\_exists}}
+\index{create\_if\_not\_exists@{create\_if\_not\_exists}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{create\_if\_not\_exists()}{create\_if\_not\_exists()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+create\+\_\+if\+\_\+not\+\_\+exists (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table,  }\item[{}]{schema,  }\item[{}]{location = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create table if not exists using data's schema
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+table: str
+  Table's registered name in the metastore
+location: str, optional
+schema: pyspark.sql.types.StructType
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_a253eb0d98f838d9755b7803ad35bcea5}\label{namespace_e_t_l_1_1delta__utils_a253eb0d98f838d9755b7803ad35bcea5}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!delete@{delete}}
+\index{delete@{delete}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+delete (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{table,  }\item[{}]{path,  }\item[{}]{database\+\_\+name = {\ttfamily None},  }\item[{}]{drop = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delete delta data.
+
+Only use drop when really needed, otherwise just overwrite or delete.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+zone: str
+  Zone containing the tables to test.
+table
+path: str
+database_name: str, optional
+  Defaults to config.data_source
+drop: bool, optional
+  Drop table
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_a8b2e18d3fabce2a188749bc2f0772cfe}\label{namespace_e_t_l_1_1delta__utils_a8b2e18d3fabce2a188749bc2f0772cfe}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!get\_inserts\_updates\_deletes@{get\_inserts\_updates\_deletes}}
+\index{get\_inserts\_updates\_deletes@{get\_inserts\_updates\_deletes}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{get\_inserts\_updates\_deletes()}{get\_inserts\_updates\_deletes()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+get\+\_\+inserts\+\_\+updates\+\_\+deletes (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{table,  }\item[{}]{path,  }\item[{}]{unique\+\_\+key,  }\item[{}]{database\+\_\+name = {\ttfamily \textquotesingle{}default\textquotesingle{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns data that was inserted, updated and deleted in the last delta table write operation.
+
+Needs a curated delta table that is overwritten with a full extract every loads.
+
+If ingesting data from the raw to curated with the function ETL.curated.write : OK
+If ingesting data from the raw to curated with the function ETL.curated.merge : NOT OK (breaks deletes)
+
+inserted: Based on a unique id, returns all rows with new id since last run.
+deleted:  Based on a unique id, returns all rows for which the id is no longer there since last run.
+updates:  Returns all rows with any changes in data, also checks in nested structures.
+
+Parameters
+----------
+config: ETL.Config
+zone: str
+table: str
+path: str
+unique_key: str
+database_name: str, optional
+  databricks db name
+
+Returns
+-------
+(pyspark.sql.DataFrame, pyspark.sql.DataFrame or None, pyspark.sql.DataFrame or None)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_a1b5382c97de7abcc49f5cf213f91656d}\label{namespace_e_t_l_1_1delta__utils_a1b5382c97de7abcc49f5cf213f91656d}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!merge@{merge}}
+\index{merge@{merge}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+merge (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{table,  }\item[{}]{df,  }\item[{}]{path,  }\item[{}]{unique\+\_\+key }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update data in the delta table.
+
+Performs a 'merge into'/'upsert' of a dataframe/table-view inside the Delata Table.
+Meaning rows are overwritten if it finds one with the same designated unqique fields, or else it is inserted.
+The batch of updates must not contain more than one row with the same chosen unique key.
+
+Handles the creation of the SQL condition update part. Needs an unique key, can be a combination of 2 or more fields.
+Eg. "ON delta_messages.message_id = updates.message_id AND delta_messages.id = updates.id"
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+zone: str
+table: str
+path: str
+df: pyspark.sql.DataFrame
+  Dataframe containing the data to save in the curated delta table.
+unique_key: list or str
+  Columns with unique values or list of columns to use as a combined unique key.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_a5cf1b5612a590fbe4f02916a63d697b0}\label{namespace_e_t_l_1_1delta__utils_a5cf1b5612a590fbe4f02916a63d697b0}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!read@{read}}
+\index{read@{read}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+read (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{path,  }\item[{$\ast$$\ast$}]{dataframe\+\_\+reader\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read all data, equivalent of doing a "SELECT *"
+
+Returns None if no data at path or path does not exists.
+Can still return a empty dataframe or a dataframe of empty rows if such is obtained from reading the files.
+
+Parameters
+----------
+config: ETL.Config
+zone: str
+path: str
+dataframe_reader_options: dict
+
+Returns
+-------
+pyspark.sql.DataFrame
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_ac45cecd95ec0561f4bc59089cabf8fba}\label{namespace_e_t_l_1_1delta__utils_ac45cecd95ec0561f4bc59089cabf8fba}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!refresh\_symlink@{refresh\_symlink}}
+\index{refresh\_symlink@{refresh\_symlink}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{refresh\_symlink()}{refresh\_symlink()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+refresh\+\_\+symlink (\begin{DoxyParamCaption}\item[{}]{path }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a delta table at location to refresh the symlinks with the current secret.
+
+Databricks 6.1 runtime might be introducing a way to avoid this with its new python APIs for the delta.tables module.
+
+Unfortunatly, delta tables pointing to adls must be read with the spark api first to make them available again
+following a daily secret renewal. Since a table could be used at any time, this should be done before anything I/O related.
+
+This process typically involves some implicit reading logic using the SQL api when writing granuarly to a delta table (Eg. merge/upsert).
+(when spark append/write cant be used) It will fail if the databrick secret is not the same that at creation.
+
+Parameters
+----------
+  path: str
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_ac59422ad9868d11300dedcaa864d69ff}\label{namespace_e_t_l_1_1delta__utils_ac59422ad9868d11300dedcaa864d69ff}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!write@{write}}
+\index{write@{write}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+write (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{df,  }\item[{}]{zone,  }\item[{}]{path,  }\item[{}]{table,  }\item[{$\ast$$\ast$}]{dataframe\+\_\+writer\+\_\+options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write/save data in the delta table(s).
+
+todo allow usage withouge needing to create tables
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+df: pyspark.sql.DataFrame
+  Dataframe containing the data to save in the curated delta table.
+zone: str
+path: str
+table: str, optional
+  Defaults to path if None
+dataframe_writer_options: dict
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_a413a07e5b8d1ff17f754fee83afdb6ff}\label{namespace_e_t_l_1_1delta__utils_a413a07e5b8d1ff17f754fee83afdb6ff}} 
+\index{ETL.delta\_utils@{ETL.delta\_utils}!upsert@{upsert}}
+\index{upsert@{upsert}!ETL.delta\_utils@{ETL.delta\_utils}}
+\doxysubsubsection{\texorpdfstring{upsert}{upsert}}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+upsert = \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a1b5382c97de7abcc49f5cf213f91656d}{merge}}}
+

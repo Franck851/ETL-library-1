@@ -1,0 +1,30 @@
+\hypertarget{namespace_e_t_l_1_1delete}{}\doxysection{E\+T\+L.\+delete Namespace Reference}
+\label{namespace_e_t_l_1_1delete}\index{ETL.delete@{ETL.delete}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1delete_af3645b1d690482f70bfdfc46ff911039}{delete}} (config, zones=None, tables=None, hard=False, check\+\_\+tables=True)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1delete_af3645b1d690482f70bfdfc46ff911039}\label{namespace_e_t_l_1_1delete_af3645b1d690482f70bfdfc46ff911039}} 
+\index{ETL.delete@{ETL.delete}!delete@{delete}}
+\index{delete@{delete}!ETL.delete@{ETL.delete}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily def E\+T\+L.\+delete.\+delete (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zones = {\ttfamily None},  }\item[{}]{tables = {\ttfamily None},  }\item[{}]{hard = {\ttfamily False},  }\item[{}]{check\+\_\+tables = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delete tables and control tables data at every zones.
+
+Parameters
+----------
+config: ETL.Config
+zones: list or str, optional
+tables: list or str, optional
+hard: bool, optional
+  Rarely any point in deleting the table itself. Simply delete contents.
+  May be needed after many tests resulting in a ballooning delta table size.
+check_tables: bool, optional
+  If false, can delete folders / tables with different names than in params.
+\end{DoxyVerb}
+ 

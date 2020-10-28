@@ -1,0 +1,97 @@
+\hypertarget{namespace_e_t_l_1_1dbfs__utils}{}\doxysection{E\+T\+L.\+dbfs\+\_\+utils Namespace Reference}
+\label{namespace_e_t_l_1_1dbfs__utils}\index{ETL.dbfs\_utils@{ETL.dbfs\_utils}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dbfs__utils_a683a1c79291e00af9fac052b5ad82dfc}{get\+\_\+dbfs\+\_\+mounts}} ()
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dbfs__utils_a2a8b7b5edd7a2c1f0c5628defe7a2b0a}{install\+\_\+py\+\_\+lib}} (library, version=None)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dbfs__utils_ad382b812b671e4227c784ec6901ff51b}{table\+\_\+exists}} (table\+\_\+name, database\+\_\+name=\textquotesingle{}default\textquotesingle{})
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dbfs__utils_a132f960bc2f6aac51dc689ba72dd41df}{get\+\_\+empty\+\_\+df}} (schema=None)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dbfs__utils_a540976aafc5e2365432a8ddb61ab3caf}{directory\+\_\+empty}} (directory\+\_\+path)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1dbfs__utils_a8b03b0fe825d25d7edb5f59f6134bfc3}{exists}} (path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1dbfs__utils_a540976aafc5e2365432a8ddb61ab3caf}\label{namespace_e_t_l_1_1dbfs__utils_a540976aafc5e2365432a8ddb61ab3caf}} 
+\index{ETL.dbfs\_utils@{ETL.dbfs\_utils}!directory\_empty@{directory\_empty}}
+\index{directory\_empty@{directory\_empty}!ETL.dbfs\_utils@{ETL.dbfs\_utils}}
+\doxysubsubsection{\texorpdfstring{directory\_empty()}{directory\_empty()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dbfs\+\_\+utils.\+directory\+\_\+empty (\begin{DoxyParamCaption}\item[{}]{directory\+\_\+path }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check that the dir path exists and has files.
+
+Spark fails to read if either of those conditions aren't fulfilled.
+
+Parameters
+----------
+directory_path: str
+
+Returns
+-------
+bool
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1dbfs__utils_a8b03b0fe825d25d7edb5f59f6134bfc3}\label{namespace_e_t_l_1_1dbfs__utils_a8b03b0fe825d25d7edb5f59f6134bfc3}} 
+\index{ETL.dbfs\_utils@{ETL.dbfs\_utils}!exists@{exists}}
+\index{exists@{exists}!ETL.dbfs\_utils@{ETL.dbfs\_utils}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dbfs\+\_\+utils.\+exists (\begin{DoxyParamCaption}\item[{}]{path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_e_t_l_1_1dbfs__utils_a683a1c79291e00af9fac052b5ad82dfc}\label{namespace_e_t_l_1_1dbfs__utils_a683a1c79291e00af9fac052b5ad82dfc}} 
+\index{ETL.dbfs\_utils@{ETL.dbfs\_utils}!get\_dbfs\_mounts@{get\_dbfs\_mounts}}
+\index{get\_dbfs\_mounts@{get\_dbfs\_mounts}!ETL.dbfs\_utils@{ETL.dbfs\_utils}}
+\doxysubsubsection{\texorpdfstring{get\_dbfs\_mounts()}{get\_dbfs\_mounts()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dbfs\+\_\+utils.\+get\+\_\+dbfs\+\_\+mounts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_e_t_l_1_1dbfs__utils_a132f960bc2f6aac51dc689ba72dd41df}\label{namespace_e_t_l_1_1dbfs__utils_a132f960bc2f6aac51dc689ba72dd41df}} 
+\index{ETL.dbfs\_utils@{ETL.dbfs\_utils}!get\_empty\_df@{get\_empty\_df}}
+\index{get\_empty\_df@{get\_empty\_df}!ETL.dbfs\_utils@{ETL.dbfs\_utils}}
+\doxysubsubsection{\texorpdfstring{get\_empty\_df()}{get\_empty\_df()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dbfs\+\_\+utils.\+get\+\_\+empty\+\_\+df (\begin{DoxyParamCaption}\item[{}]{schema = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parameters
+----------
+schema: pyspark.sql.types.StructType, optional
+
+Returns
+-------
+pyspark.sql.DataFrame
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1dbfs__utils_a2a8b7b5edd7a2c1f0c5628defe7a2b0a}\label{namespace_e_t_l_1_1dbfs__utils_a2a8b7b5edd7a2c1f0c5628defe7a2b0a}} 
+\index{ETL.dbfs\_utils@{ETL.dbfs\_utils}!install\_py\_lib@{install\_py\_lib}}
+\index{install\_py\_lib@{install\_py\_lib}!ETL.dbfs\_utils@{ETL.dbfs\_utils}}
+\doxysubsubsection{\texorpdfstring{install\_py\_lib()}{install\_py\_lib()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dbfs\+\_\+utils.\+install\+\_\+py\+\_\+lib (\begin{DoxyParamCaption}\item[{}]{library,  }\item[{}]{version = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Install pypi library if on databricks and do not raise if called locally.
+
+Just a safe way to install python library for both databricks connect and notebooks.
+
+Parameters
+----------
+library: str
+version: str, optional
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1dbfs__utils_ad382b812b671e4227c784ec6901ff51b}\label{namespace_e_t_l_1_1dbfs__utils_ad382b812b671e4227c784ec6901ff51b}} 
+\index{ETL.dbfs\_utils@{ETL.dbfs\_utils}!table\_exists@{table\_exists}}
+\index{table\_exists@{table\_exists}!ETL.dbfs\_utils@{ETL.dbfs\_utils}}
+\doxysubsubsection{\texorpdfstring{table\_exists()}{table\_exists()}}
+{\footnotesize\ttfamily def E\+T\+L.\+dbfs\+\_\+utils.\+table\+\_\+exists (\begin{DoxyParamCaption}\item[{}]{table\+\_\+name,  }\item[{}]{database\+\_\+name = {\ttfamily \textquotesingle{}default\textquotesingle{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if table exists
+
+Parameters
+----------
+table_name: str
+database_name: str, optional
+
+Returns
+-------
+bool
+\end{DoxyVerb}
+ 

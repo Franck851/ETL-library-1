@@ -1,0 +1,6 @@
+databricks-connect==5.5.3
+etl==0.1.0
+py4j==0.10.7
+six==1.13.0
+xmldict==0.4.1
+xmltodict==0.12.0

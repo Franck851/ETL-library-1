@@ -1,0 +1,203 @@
+\hypertarget{namespace_e_t_l_1_1raw__control}{}\doxysection{E\+T\+L.\+raw\+\_\+control Namespace Reference}
+\label{namespace_e_t_l_1_1raw__control}\index{ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_ab64fbc8de8a732d124cb15ace3a6f192}{select}} (config, table\+\_\+or\+\_\+string)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_a6d4aed121c478e2ff4ec9e80e1b915ff}{insert}} (config, paths, table=None)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_ad39e6d6044dd73899c9bbe334d76362f}{delete}} (config, table\+\_\+or\+\_\+string\+\_\+pattern)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_aaf3c1deecf26ade9e2ea90b62d66bba3}{path\+\_\+is\+\_\+valid}} (path, raise\+\_\+when\+\_\+invalid=False)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_aaf93032b8eaa4a33b50b29f9d98b3670}{create\+\_\+if\+\_\+not\+\_\+exists}} (config, name=None)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_af869949247d74f2fdc36531a9f62235b}{migrate\+\_\+legacy\+\_\+control\+\_\+table}} (config)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_a68c01ed82bea7ebc7cea7c18c06e96ac}{build\+\_\+regex\+\_\+part}} (pattern)
+\item 
+def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_a1ef8845c4b82027ce26849fa781c07f8}{path\+\_\+to\+\_\+short\+\_\+path}} (path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This module provides utility functions to select, insert and delete records of past incremental loads.
+
+Table schema:
+(table_name STRING, last_version INT)
+
+Example rows:
+inc-2020_01_10_22_35_33/Messages
+inc-2020_01_06_16_20_14/Messages
+inc-2019_10_30_13_33_24/Messages
+inc-2019_10_30_13_33_24/Groups
+inc-2020_01_10_22_35_33/Groups
+inc-2020_01_06_16_20_14/Topics
+inc-2019_12_13_17_40_35/Topics
+inc-2020_01_06_16_20_14/Groups
+inc-2020_01_13_13_32_08/Groups
+inc-2020_01_13_13_32_08/Users
+
+Typical incremental flow:
+1. Read content of the control table
+2. Get the paths of raw-zone ingestion folders
+3. Filter folder paths for table that were not in the control table
+4. Get the paths of all files in the remaining folders
+5. Read JSON data with spark in one go by passing it the list of file paths
+6. If data ingestion is successful, insert folder paths in the control table
+
+It is possible to operate on strings instead of registred table names to look for ingestion path patterns.
+Eg. To delete from control table values with table name 'things' but in folder 'inc-2020' only ->
+  ETL.raw_control(config, table_or_string='inc-2020/things')
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_a68c01ed82bea7ebc7cea7c18c06e96ac}\label{namespace_e_t_l_1_1raw__control_a68c01ed82bea7ebc7cea7c18c06e96ac}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!build\_regex\_part@{build\_regex\_part}}
+\index{build\_regex\_part@{build\_regex\_part}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{build\_regex\_part()}{build\_regex\_part()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+build\+\_\+regex\+\_\+part (\begin{DoxyParamCaption}\item[{}]{pattern }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Build SQL "WHERE path RLIKE -> regex_part <-" to match rows containing tables.
+
+Parameters
+----------
+pattern: str
+  Table to search or string like a specific folder with a table eg. "inc-2020-01-08/table"
+
+Returns
+-------
+str
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_aaf93032b8eaa4a33b50b29f9d98b3670}\label{namespace_e_t_l_1_1raw__control_aaf93032b8eaa4a33b50b29f9d98b3670}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!create\_if\_not\_exists@{create\_if\_not\_exists}}
+\index{create\_if\_not\_exists@{create\_if\_not\_exists}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{create\_if\_not\_exists()}{create\_if\_not\_exists()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+create\+\_\+if\+\_\+not\+\_\+exists (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{name = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create control table if not exists.
+
+Save raw zone short paths, eg. "inc-2019-06-13/MessagesLikes"
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+name: str, optional
+  If specified, name to use.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_ad39e6d6044dd73899c9bbe334d76362f}\label{namespace_e_t_l_1_1raw__control_ad39e6d6044dd73899c9bbe334d76362f}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!delete@{delete}}
+\index{delete@{delete}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+delete (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table\+\_\+or\+\_\+string\+\_\+pattern }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delete all control table rows containing table name or string pattern.
+
+Is case sensitive.
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+
+table_or_string_pattern: str
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_a6d4aed121c478e2ff4ec9e80e1b915ff}\label{namespace_e_t_l_1_1raw__control_a6d4aed121c478e2ff4ec9e80e1b915ff}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!insert@{insert}}
+\index{insert@{insert}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+insert (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{paths,  }\item[{}]{table = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Insert paths in the raw-zone control table.
+
+Valid path example: 'inc-2019_07_18/Topics'
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+
+paths: list
+  Valid DBFS paths to insert in the control table.
+
+table: str, optional
+  Only for logging purposes.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_af869949247d74f2fdc36531a9f62235b}\label{namespace_e_t_l_1_1raw__control_af869949247d74f2fdc36531a9f62235b}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!migrate\_legacy\_control\_table@{migrate\_legacy\_control\_table}}
+\index{migrate\_legacy\_control\_table@{migrate\_legacy\_control\_table}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{migrate\_legacy\_control\_table()}{migrate\_legacy\_control\_table()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+migrate\+\_\+legacy\+\_\+control\+\_\+table (\begin{DoxyParamCaption}\item[{}]{config }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transfer data from the old control table if exists to the new one.
+
+The old table used to have only the "ingestion" table in it
+(eg. ".../inc-2019-06-13") but the new table is more granular.
+So when migrating, we simply add an entry for every table names
+eg. "inc-2019-06-13/MessagesLikes", "inc-2019-06-13/Users"... etc
+
+Some transformations are needed as the new control table values format
+allow for a more granular control:
+
+  old format:
+      "inc-2019-06-13"
+
+  new format:
+      "inc-2019-06-13/MessagesLikes"
+      "inc-2019-06-13/Messages"
+      "inc-2019-06-13/Users"
+
+Parameters
+----------
+config: ETL.Config
+  Config instance
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_aaf3c1deecf26ade9e2ea90b62d66bba3}\label{namespace_e_t_l_1_1raw__control_aaf3c1deecf26ade9e2ea90b62d66bba3}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!path\_is\_valid@{path\_is\_valid}}
+\index{path\_is\_valid@{path\_is\_valid}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{path\_is\_valid()}{path\_is\_valid()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+path\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{}]{path,  }\item[{}]{raise\+\_\+when\+\_\+invalid = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_a1ef8845c4b82027ce26849fa781c07f8}\label{namespace_e_t_l_1_1raw__control_a1ef8845c4b82027ce26849fa781c07f8}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!path\_to\_short\_path@{path\_to\_short\_path}}
+\index{path\_to\_short\_path@{path\_to\_short\_path}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{path\_to\_short\_path()}{path\_to\_short\_path()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+path\+\_\+to\+\_\+short\+\_\+path (\begin{DoxyParamCaption}\item[{}]{path }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert any valid dbfs path to keep only the last part for the control table.
+
+'/dbfs/mnt/adls/raw_yammer/yammer/inc-2019_08_40/Messages'
+'/dbfs/mnt/adls/raw_yammer/yammer/inc-2019_08_40/Messages/file.json'
+to
+'inc-2019_08_40/Messages'
+'inc-2019_08_40/Messages'
+
+Parameters
+----------
+path
+
+Returns
+-------
+str
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_e_t_l_1_1raw__control_ab64fbc8de8a732d124cb15ace3a6f192}\label{namespace_e_t_l_1_1raw__control_ab64fbc8de8a732d124cb15ace3a6f192}} 
+\index{ETL.raw\_control@{ETL.raw\_control}!select@{select}}
+\index{select@{select}!ETL.raw\_control@{ETL.raw\_control}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily def E\+T\+L.\+raw\+\_\+control.\+select (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{table\+\_\+or\+\_\+string }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get all control table values matching the table name or string pattern.
+
+Parameters
+----------
+config: ETL.Config
+table_or_string
+
+Returns
+-------
+list
+\end{DoxyVerb}
+ 
