@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tests_2epy_174',['tests.py',['../tests_8py.html',1,'']]],
-  ['transform_2epy_175',['transform.py',['../transform_8py.html',1,'']]],
-  ['trusted_5ftables_2epy_176',['trusted_tables.py',['../trusted__tables_8py.html',1,'']]]
+  ['spark_5finit_2epy_181',['spark_init.py',['../spark__init_8py.html',1,'']]],
+  ['string_5fformat_2epy_182',['string_format.py',['../string__format_8py.html',1,'']]]
 ];

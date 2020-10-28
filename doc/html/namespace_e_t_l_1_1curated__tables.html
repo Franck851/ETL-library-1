@@ -198,6 +198,11 @@ table: str
 Returns
 -------
 (pyspark.sql.DataFrame, pyspark.sql.DataFrame or None, pyspark.sql.DataFrame or None)
+
+Notes
+_____
+Either update curated control table manually after usage or use trusted_tables.write
+to ensure that the next delta reflects the new changes.
 </pre> 
 </div>
 </div>

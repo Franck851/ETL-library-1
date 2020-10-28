@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['log_90',['log',['../namespace_e_t_l_1_1utils.html#ad80c14198e59b1855b5aad48ddd89bf6',1,'ETL::utils']]]
+  ['kwargs_93',['kwargs',['../class_e_t_l_1_1transform_1_1_transform.html#a93b7eb6c7e3b229a271b23fb020c3d96',1,'ETL::transform::Transform']]]
 ];

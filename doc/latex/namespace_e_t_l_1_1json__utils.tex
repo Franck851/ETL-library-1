@@ -3,7 +3,7 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{namespace_e_t_l_1_1json__utils_ae3de367d4d86843b4c7ffc0a6dfbaa28}{write\+\_\+df}} (config, df, zone, path, num\+\_\+files=None, $\ast$$\ast$dataframe\+\_\+writer\+\_\+options)
+def \mbox{\hyperlink{namespace_e_t_l_1_1json__utils_a94aa92f8fbfdfbf54075815d7d85eee5}{write\+\_\+df}} (config, df, zone, path, num\+\_\+files, $\ast$$\ast$dataframe\+\_\+writer\+\_\+options)
 \item 
 def \mbox{\hyperlink{namespace_e_t_l_1_1json__utils_a25b9e5fd14c3ccc65baa25de31530e57}{read}} (config, zone, paths, $\ast$$\ast$dataframe\+\_\+reader\+\_\+options)
 \end{DoxyCompactItemize}
@@ -32,11 +32,11 @@ Returns
 -------
 pyspark.sql.DataFrame or None
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespace_e_t_l_1_1json__utils_ae3de367d4d86843b4c7ffc0a6dfbaa28}\label{namespace_e_t_l_1_1json__utils_ae3de367d4d86843b4c7ffc0a6dfbaa28}} 
+ \mbox{\Hypertarget{namespace_e_t_l_1_1json__utils_a94aa92f8fbfdfbf54075815d7d85eee5}\label{namespace_e_t_l_1_1json__utils_a94aa92f8fbfdfbf54075815d7d85eee5}} 
 \index{ETL.json\_utils@{ETL.json\_utils}!write\_df@{write\_df}}
 \index{write\_df@{write\_df}!ETL.json\_utils@{ETL.json\_utils}}
 \doxysubsubsection{\texorpdfstring{write\_df()}{write\_df()}}
-{\footnotesize\ttfamily def E\+T\+L.\+json\+\_\+utils.\+write\+\_\+df (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{df,  }\item[{}]{zone,  }\item[{}]{path,  }\item[{}]{num\+\_\+files = {\ttfamily None},  }\item[{$\ast$$\ast$}]{dataframe\+\_\+writer\+\_\+options }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def E\+T\+L.\+json\+\_\+utils.\+write\+\_\+df (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{df,  }\item[{}]{zone,  }\item[{}]{path,  }\item[{}]{num\+\_\+files,  }\item[{$\ast$$\ast$}]{dataframe\+\_\+writer\+\_\+options }\end{DoxyParamCaption})}
 
 \begin{DoxyVerb}Writes the spark dataframe in json format to the specified zone.
 
@@ -53,7 +53,7 @@ zone: str
 
 path: str
 
-num_files: int, optional
+num_files: int
   How many files to write.
 
 dataframe_writer_options

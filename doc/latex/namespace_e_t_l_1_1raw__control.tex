@@ -25,31 +25,31 @@ def \mbox{\hyperlink{namespace_e_t_l_1_1raw__control_a1ef8845c4b82027ce26849fa78
 \begin{DoxyVerb}This module provides utility functions to select, insert and delete records of past incremental loads.
 
 Table schema:
-(table_name STRING, last_version INT)
+  (table_name STRING, last_version INT)
 
 Example rows:
-inc-2020_01_10_22_35_33/Messages
-inc-2020_01_06_16_20_14/Messages
-inc-2019_10_30_13_33_24/Messages
-inc-2019_10_30_13_33_24/Groups
-inc-2020_01_10_22_35_33/Groups
-inc-2020_01_06_16_20_14/Topics
-inc-2019_12_13_17_40_35/Topics
-inc-2020_01_06_16_20_14/Groups
-inc-2020_01_13_13_32_08/Groups
-inc-2020_01_13_13_32_08/Users
+  inc-2020_01_10_22_35_33/Messages
+  inc-2020_01_06_16_20_14/Messages
+  inc-2019_10_30_13_33_24/Messages
+  inc-2019_10_30_13_33_24/Groups
+  inc-2020_01_10_22_35_33/Groups
+  inc-2020_01_06_16_20_14/Topics
+  inc-2019_12_13_17_40_35/Topics
+  inc-2020_01_06_16_20_14/Groups
+  inc-2020_01_13_13_32_08/Groups
+  inc-2020_01_13_13_32_08/Users
 
 Typical incremental flow:
-1. Read content of the control table
-2. Get the paths of raw-zone ingestion folders
-3. Filter folder paths for table that were not in the control table
-4. Get the paths of all files in the remaining folders
-5. Read JSON data with spark in one go by passing it the list of file paths
-6. If data ingestion is successful, insert folder paths in the control table
+  1. Read content of the control table
+  2. Get the paths of raw-zone ingestion folders
+  3. Filter folder paths for table that were not in the control table
+  4. Get the paths of all files in the remaining folders
+  5. Read JSON data with spark in one go by passing it the list of file paths
+  6. If data ingestion is successful, insert folder paths in the control table
 
 It is possible to operate on strings instead of registred table names to look for ingestion path patterns.
 Eg. To delete from control table values with table name 'things' but in folder 'inc-2020' only ->
-  ETL.raw_control(config, table_or_string='inc-2020/things')
+    ETL.raw_control(config, table_or_string='inc-2020/things')
 \end{DoxyVerb}
  
 

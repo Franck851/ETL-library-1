@@ -84,6 +84,11 @@ table: str
 Returns
 -------
 (pyspark.sql.DataFrame, pyspark.sql.DataFrame or None, pyspark.sql.DataFrame or None)
+
+Notes
+_____
+Either update curated control table manually after usage or use trusted_tables.write
+to ensure that the next delta reflects the new changes.
 \end{DoxyVerb}
  \mbox{\Hypertarget{namespace_e_t_l_1_1curated__tables_a40dae4a61a653ae9a870b2fad25e19c1}\label{namespace_e_t_l_1_1curated__tables_a40dae4a61a653ae9a870b2fad25e19c1}} 
 \index{ETL.curated\_tables@{ETL.curated\_tables}!merge@{merge}}

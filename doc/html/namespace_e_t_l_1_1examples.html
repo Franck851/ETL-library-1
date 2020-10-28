@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ETL Library: ETL.delete Namespace Reference</title>
+<title>ETL Library: ETL.examples Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,58 +61,79 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_e_t_l.html">ETL</a></li><li class="navelem"><a class="el" href="namespace_e_t_l_1_1delete.html">delete</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespace_e_t_l.html">ETL</a></li><li class="navelem"><a class="el" href="namespace_e_t_l_1_1examples.html">examples</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">ETL.delete Namespace Reference</div>  </div>
+<div class="title">ETL.examples Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af3645b1d690482f70bfdfc46ff911039"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_e_t_l_1_1delete.html#af3645b1d690482f70bfdfc46ff911039">delete</a> (config, zones=None, tables=None, hard=False, check_tables=True)</td></tr>
-<tr class="separator:af3645b1d690482f70bfdfc46ff911039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4117f092c0d7e1da2d4e338ed2ae4d90"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_e_t_l_1_1examples.html#a4117f092c0d7e1da2d4e338ed2ae4d90">parse_date</a> (df)</td></tr>
+<tr class="separator:a4117f092c0d7e1da2d4e338ed2ae4d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7539f10155d32550b2ce661bd87d545"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_e_t_l_1_1examples.html#ad7539f10155d32550b2ce661bd87d545">raw_to_curated</a> (table, transformation=None, incremental=False)</td></tr>
+<tr class="separator:ad7539f10155d32550b2ce661bd87d545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a6f302cf27fbc68287e53b25f9a03ee39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_e_t_l_1_1examples.html#a6f302cf27fbc68287e53b25f9a03ee39">config</a> = <a class="el" href="class_e_t_l_1_1config_1_1_config.html">Config</a>(params)</td></tr>
+<tr class="separator:a6f302cf27fbc68287e53b25f9a03ee39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="af3645b1d690482f70bfdfc46ff911039"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3645b1d690482f70bfdfc46ff911039">&#9670;&nbsp;</a></span>delete()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">ETL.etl
+~~~~~~~
+
+This module provides examples use cases of moving and transforming data.
+
+Different ways can be used depending on how standard the pipeline is.
+</pre> </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a4117f092c0d7e1da2d4e338ed2ae4d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4117f092c0d7e1da2d4e338ed2ae4d90">&#9670;&nbsp;</a></span>parse_date()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def ETL.delete.delete </td>
+          <td class="memname">def ETL.examples.parse_date </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>config</em>, </td>
+          <td class="paramname"><em>df</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7539f10155d32550b2ce661bd87d545"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7539f10155d32550b2ce661bd87d545">&#9670;&nbsp;</a></span>raw_to_curated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def ETL.examples.raw_to_curated </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>table</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>zones</em> = <code>None</code>, </td>
+          <td class="paramname"><em>transformation</em> = <code>None</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>tables</em> = <code>None</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>hard</em> = <code>False</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>check_tables</em> = <code>True</code>&#160;</td>
+          <td class="paramname"><em>incremental</em> = <code>False</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -121,18 +142,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Delete tables and control tables data at every zones.
 
-Parameters
-----------
-config: Config
-zones: list or str, optional
-tables: list or str, optional
-hard: bool, optional
-  Rarely any point in deleting the table itself. Simply delete contents.
-check_tables: bool, optional
-  If false, can delete folders / tables with different names than in params.
-</pre> 
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a6f302cf27fbc68287e53b25f9a03ee39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f302cf27fbc68287e53b25f9a03ee39">&#9670;&nbsp;</a></span>config</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ETL.examples.config = <a class="el" href="class_e_t_l_1_1config_1_1_config.html">Config</a>(params)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 </div>
 </div>
 </div><!-- contents -->

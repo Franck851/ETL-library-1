@@ -15,7 +15,7 @@ def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_acf9d968e0b6380d808e5bd498c
 \item 
 def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_ac45cecd95ec0561f4bc59089cabf8fba}{refresh\+\_\+symlink}} (path)
 \item 
-def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a8b2e18d3fabce2a188749bc2f0772cfe}{get\+\_\+inserts\+\_\+updates\+\_\+deletes}} (config, zone, table, path, unique\+\_\+key, database\+\_\+name=\textquotesingle{}default\textquotesingle{})
+def \mbox{\hyperlink{namespace_e_t_l_1_1delta__utils_a6b62f88410500ab26e74a36480f25ca7}{get\+\_\+inserts\+\_\+updates\+\_\+deletes}} (config, zone, table, path, unique\+\_\+key, database\+\_\+name=\textquotesingle{}default\textquotesingle{}, old\+\_\+version=None)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -72,11 +72,11 @@ database_name: str, optional
 drop: bool, optional
   Drop table
 \end{DoxyVerb}
- \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_a8b2e18d3fabce2a188749bc2f0772cfe}\label{namespace_e_t_l_1_1delta__utils_a8b2e18d3fabce2a188749bc2f0772cfe}} 
+ \mbox{\Hypertarget{namespace_e_t_l_1_1delta__utils_a6b62f88410500ab26e74a36480f25ca7}\label{namespace_e_t_l_1_1delta__utils_a6b62f88410500ab26e74a36480f25ca7}} 
 \index{ETL.delta\_utils@{ETL.delta\_utils}!get\_inserts\_updates\_deletes@{get\_inserts\_updates\_deletes}}
 \index{get\_inserts\_updates\_deletes@{get\_inserts\_updates\_deletes}!ETL.delta\_utils@{ETL.delta\_utils}}
 \doxysubsubsection{\texorpdfstring{get\_inserts\_updates\_deletes()}{get\_inserts\_updates\_deletes()}}
-{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+get\+\_\+inserts\+\_\+updates\+\_\+deletes (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{table,  }\item[{}]{path,  }\item[{}]{unique\+\_\+key,  }\item[{}]{database\+\_\+name = {\ttfamily \textquotesingle{}default\textquotesingle{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def E\+T\+L.\+delta\+\_\+utils.\+get\+\_\+inserts\+\_\+updates\+\_\+deletes (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{zone,  }\item[{}]{table,  }\item[{}]{path,  }\item[{}]{unique\+\_\+key,  }\item[{}]{database\+\_\+name = {\ttfamily \textquotesingle{}default\textquotesingle{}},  }\item[{}]{old\+\_\+version = {\ttfamily None} }\end{DoxyParamCaption})}
 
 \begin{DoxyVerb}Returns data that was inserted, updated and deleted in the last delta table write operation.
 
@@ -89,6 +89,10 @@ inserted: Based on a unique id, returns all rows with new id since last run.
 deleted:  Based on a unique id, returns all rows for which the id is no longer there since last run.
 updates:  Returns all rows with any changes in data, also checks in nested structures.
 
+Notes
+_____
+Does not support composed keys as unique_key
+
 Parameters
 ----------
 config: ETL.Config
@@ -98,6 +102,8 @@ path: str
 unique_key: str
 database_name: str, optional
   databricks db name
+old_version: int, optional
+  If None, get the delta between the two last versions of the delta table.
 
 Returns
 -------
@@ -190,8 +196,7 @@ df: pyspark.sql.DataFrame
   Dataframe containing the data to save in the curated delta table.
 zone: str
 path: str
-table: str, optional
-  Defaults to path if None
+table: str
 dataframe_writer_options: dict
 \end{DoxyVerb}
  

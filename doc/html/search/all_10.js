@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['select_109',['select',['../namespace_e_t_l_1_1curated__control.html#aae348611b6f974ab831df16213adc41c',1,'ETL.curated_control.select()'],['../namespace_e_t_l_1_1raw__control.html#ab64fbc8de8a732d124cb15ace3a6f192',1,'ETL.raw_control.select()']]],
-  ['spark_5finit_2epy_110',['spark_init.py',['../spark__init_8py.html',1,'']]],
-  ['string_5fformat_2epy_111',['string_format.py',['../string__format_8py.html',1,'']]],
-  ['supported_5fzones_5fall_112',['supported_zones_all',['../class_e_t_l_1_1config_1_1_config.html#a5cd61c121662c7d2b6ceb5b949e59cde',1,'ETL::config::Config']]],
-  ['supported_5fzones_5fdata_113',['supported_zones_data',['../class_e_t_l_1_1config_1_1_config.html#af62ab678e9c00a1a7b5dfcfe55774fd1',1,'ETL::config::Config']]],
-  ['supported_5fzones_5ftest_114',['supported_zones_test',['../class_e_t_l_1_1config_1_1_config.html#a1ef3faf292be4498359fea06cd0662ce',1,'ETL::config::Config']]],
-  ['suppress_5fstdout_115',['suppress_stdout',['../namespace_e_t_l_1_1utils.html#a7e4f576de4af5e10346517bcf888c78d',1,'ETL::utils']]]
+  ['raw_5fcontrol_2epy_107',['raw_control.py',['../raw__control_8py.html',1,'']]],
+  ['raw_5fcontrol_5ftable_5fname_108',['raw_control_table_name',['../class_e_t_l_1_1config_1_1_config.html#a3fe48250b1875172f5efd8b9e735e689',1,'ETL::config::Config']]],
+  ['raw_5ftables_2epy_109',['raw_tables.py',['../raw__tables_8py.html',1,'']]],
+  ['raw_5fto_5fcurated_110',['raw_to_curated',['../namespace_e_t_l_1_1examples.html#ad7539f10155d32550b2ce661bd87d545',1,'ETL::examples']]],
+  ['read_111',['read',['../namespace_e_t_l_1_1curated__tables.html#a717fc2fe264b82e082821d669284ab63',1,'ETL.curated_tables.read()'],['../namespace_e_t_l_1_1dataframe__utils.html#a538b6d98440ff39b1bade35dbd016db7',1,'ETL.dataframe_utils.read()'],['../namespace_e_t_l_1_1delta__utils.html#a5cf1b5612a590fbe4f02916a63d697b0',1,'ETL.delta_utils.read()'],['../namespace_e_t_l_1_1json__utils.html#a25b9e5fd14c3ccc65baa25de31530e57',1,'ETL.json_utils.read()'],['../namespace_e_t_l_1_1raw__tables.html#ad790d0785e6678d7f46836c4d2c03f5c',1,'ETL.raw_tables.read()'],['../namespace_e_t_l_1_1trusted__tables.html#a1b375def0b26a8bff402b8b5b6bb2667',1,'ETL.trusted_tables.read()']]],
+  ['readme_2emd_112',['readme.md',['../readme_8md.html',1,'']]],
+  ['refresh_5fsymlink_113',['refresh_symlink',['../namespace_e_t_l_1_1delta__utils.html#ac45cecd95ec0561f4bc59089cabf8fba',1,'ETL::delta_utils']]],
+  ['remove_5fempty_5fstrings_114',['remove_empty_strings',['../namespace_e_t_l_1_1utils.html#a38785b8c9a4878735ee71c577026e6ed',1,'ETL::utils']]]
 ];
